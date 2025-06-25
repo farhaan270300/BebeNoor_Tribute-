@@ -1,1 +1,1 @@
-console.log('Autoplay logic goes here.');
+JavaScript for behavior

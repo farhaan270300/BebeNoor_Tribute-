@@ -1,44 +1,32 @@
 
-const slides = document.querySelectorAll(".slide");
-let current = 0;
-
-function showSlide(index) {
-  slides.forEach((s, i) => s.style.display = i === index ? "block" : "none");
-  if (index === slides.length - 1) {
-    setTimeout(() => document.getElementById("interactive-buttons").style.display = "block", 2000);
-  }
-}
-
+let currentSlide = 1;
+const totalSlides = 7;
 function checkAccess() {
-  const input = document.getElementById("anniversary").value.trim().toLowerCase();
-  if (input === "1st may 2023") {
-    document.getElementById("access-screen").style.display = "none";
-    document.getElementById("main-content").style.display = "block";
-    document.getElementById("bg-music").volume = 0.5;
-    showSlide(current);
-    autoAdvance();
+  const input = document.getElementById('access-input').value;
+  if (input === '01/05/2023') {
+    document.getElementById('access-page').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+    setTimeout(nextSlide, 5000);
   } else {
-    document.getElementById("error-msg").innerText = "Hmm… that’s not it. Try again, my love.";
+    alert("Wrong date, Bebe Noor 😘");
   }
 }
-
-function autoAdvance() {
-  setInterval(() => {
-    if (current < slides.length - 1) {
-      current++;
-      showSlide(current);
-    }
-  }, 5000);
+function nextSlide() {
+  if (currentSlide < totalSlides) {
+    document.getElementById('slide' + currentSlide).classList.remove('show');
+    currentSlide++;
+    document.getElementById('slide' + currentSlide).classList.add('show');
+    setTimeout(nextSlide, 5000);
+  } else {
+    document.getElementById('end-screen').style.display = 'block';
+  }
 }
-
 function restart() {
   location.reload();
 }
-
 function requestAnother() {
-  window.location.href = "mailto:farhaan270300@gmail.com?subject=Another Tribute Request 💌&body=Tell me why you want another tribute, or share how this one made you feel.";
+  window.location.href = "mailto:your_email@example.com?subject=Another Tribute Request&body=Hi, I'd love another one because...";
 }
-
 function end() {
-  document.getElementById("main-content").innerHTML = "<p style='font-size:24px;margin-top:20%'>Thank you for watching, my love. 💫</p>";
+  alert("Goodbye, Bebe Noor ❤️");
 }

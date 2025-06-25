@@ -1,49 +1,24 @@
 
 body {
-  margin: 0;
+  font-family: Arial, sans-serif;
   background: black;
   color: white;
-  font-family: 'Segoe UI', sans-serif;
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
-#access-screen {
+#access-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   height: 100vh;
-}
-input {
-  padding: 10px;
-  font-size: 18px;
-  border: none;
-  border-radius: 5px;
-  outline: none;
-}
-button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background: white;
-  color: black;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-}
-#error-msg {
-  margin-top: 10px;
-  color: red;
 }
 .slide {
   display: none;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
-.slide img {
-  max-width: 100%;
-  height: auto;
-}
-.final-message {
-  font-size: 24px;
-  padding: 20px;
-}
-#interactive-buttons button {
-  margin: 10px;
+.show {
+  display: flex;
 }

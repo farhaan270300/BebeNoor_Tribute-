@@ -1,28 +1,44 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const slides = [
-    { text: "Slide 1 content", image: "slide1.png" },
-    { text: "Slide 2 content", image: "slide2.png" },
-    { text: "Slide 3 content", image: "slide3.png" },
-    { text: "Slide 4 content", image: "slide4.png" },
-    { text: "Slide 5 content", image: "slide5.png" },
-    { text: "Slide 6 content", image: "slide6.jpeg" },
-    { text: "Even if my future is only built on your memories… it will still be worth everything.\n— FN27 lies in my heart forever. I love you❤️", image: "slide7.jpeg" }
-  ];
 
-  const container = document.getElementById("slides");
-  let index = 0;
+const slides = document.querySelectorAll(".slide");
+let current = 0;
 
-  function showSlide() {
-    const { text, image } = slides[index];
-    container.style.backgroundImage = `url('${image}')`;
-    container.innerText = text;
-    index++;
-    if (index < slides.length) {
-      setTimeout(showSlide, 4000);
-    } else {
-      container.innerHTML = `<div>${text}</div><br><button onclick="location.reload()">Restart</button>`;
-    }
+function showSlide(index) {
+  slides.forEach((s, i) => s.style.display = i === index ? "block" : "none");
+  if (index === slides.length - 1) {
+    setTimeout(() => document.getElementById("interactive-buttons").style.display = "block", 2000);
   }
+}
 
-  showSlide();
-});
+function checkAccess() {
+  const input = document.getElementById("anniversary").value.trim().toLowerCase();
+  if (input === "1st may 2023") {
+    document.getElementById("access-screen").style.display = "none";
+    document.getElementById("main-content").style.display = "block";
+    document.getElementById("bg-music").volume = 0.5;
+    showSlide(current);
+    autoAdvance();
+  } else {
+    document.getElementById("error-msg").innerText = "Hmm… that’s not it. Try again, my love.";
+  }
+}
+
+function autoAdvance() {
+  setInterval(() => {
+    if (current < slides.length - 1) {
+      current++;
+      showSlide(current);
+    }
+  }, 5000);
+}
+
+function restart() {
+  location.reload();
+}
+
+function requestAnother() {
+  window.location.href = "mailto:farhaan270300@gmail.com?subject=Another Tribute Request 💌&body=Tell me why you want another tribute, or share how this one made you feel.";
+}
+
+function end() {
+  document.getElementById("main-content").innerHTML = "<p style='font-size:24px;margin-top:20%'>Thank you for watching, my love. 💫</p>";
+}
